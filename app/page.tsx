@@ -1,3 +1,4 @@
+import LoadingContent from "@/components/loading/LoadingContent";
 import Image from "next/image";
 
 async function getData() {
@@ -9,5 +10,13 @@ async function getData() {
 export default async function Home() {
   const data = await getData();
 
-  return <div>Home</div>;
+  return (
+    <main>
+      <LoadingContent />
+      <div className="flex min-h-screen flex-col items-center justify-center p-24">
+        <h1 className="text-4xl font-bold">Home Page Content</h1>
+        <p className="mt-4 text-xl">{data.message}</p>
+      </div>
+    </main>
+  );
 }

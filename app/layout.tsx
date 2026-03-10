@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { advercase, saans } from "@/fonts/fonts";
 import { Suspense } from "react";
-import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Create Next App",
