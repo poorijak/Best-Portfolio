@@ -13,11 +13,10 @@
 }
 
 body {
-  background: var(--background);
+  background: #B8FB00;
   color: var(--foreground);
 }
 
-/* 1. กำหนดค่าพื้นฐาน (ใช้ OKLCH เป็นหลักตามสไตล์ v4) */
 :root {
   --background: oklch(0.980 0.0008 50.2);
   --foreground: oklch(0.145 0 0);
@@ -117,8 +116,27 @@ body {
   --font-saans-collection: var(--font-saans);
 }
 
-/* 3. ประยุกต์ใช้กับ Body */
-body {
-  background-color: var(--background);
-  color: var(--foreground);
+
+:root {
+  --dot-color: #eeeeee; /* สีจุด (light) */
+  --dot-gap: 30px; /* ระยะห่าง */
+  --dot-size: 5px; /* รัศมีจุด */
 }
+.dark {
+  --dot-color: #334155; /* สีจุด (dark) */
+}
+
+/* ยูทิลิตี้คลาสสำหรับพื้นหลัง dot grid */
+@layer utilities {
+  .bg-dot-grid {
+    background-color: var(--background); /* ใช้สีพื้นหลังจากธีมของคุณ */
+    background-image: radial-gradient(
+      circle,
+      var(--dot-color) var(--dot-size),
+      transparent var(--dot-size)
+    );
+    background-size: var(--dot-gap) var(--dot-gap);
+    background-position: 0 0;
+  }
+}
+

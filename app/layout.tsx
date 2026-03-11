@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { advercase, saans } from "@/fonts/fonts";
 import { Suspense } from "react";
+import Cursor from "@/components/cursor/Cursor";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${advercase.variable} ${saans.variable} antialiased`}>
+      <body
+        className={`${advercase.variable} ${saans.variable} antialiased selection:bg-primary/70  selection:text-black`}
+      >
+        <Cursor />
         {children}
       </body>
     </html>
