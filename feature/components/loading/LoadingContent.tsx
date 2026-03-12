@@ -1,9 +1,9 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import gsap from "../../lib/gsap";
+import gsap from "../../../lib/gsap";
 import React, { useEffect, useRef, useState } from "react";
-import { fadeText, textSlideDown, staggeredSlideUp, fadeOut } from "./animate";
+import { fadeText, textSlideDown, staggeredSlideUp, fadeOut } from "./anim/animate";
 import Image from "next/image";
 
 // const greetings = ["Hello", "Bonjour", "Ciao", "Olà", "やあ", "Hallå", "Guten tag", "Hallo"]
@@ -81,7 +81,6 @@ const LoadingContent = () => {
         ))}
       </div>
 
-      {/* Content centered above columns */}
       <div className="relative w-full h-full p-5 flex justify-center items-center pointer-events-auto overflow-hidden">
         <div ref={memojiRef} className="size-68 relative aspect-square">
           <video

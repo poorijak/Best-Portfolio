@@ -15,6 +15,7 @@
 body {
   background: #B8FB00;
   color: var(--foreground);
+  font-family: var(--font-saans-collection);
 }
 
 :root {
@@ -120,7 +121,7 @@ body {
 :root {
   --dot-color: #eeeeee; /* สีจุด (light) */
   --dot-gap: 30px; /* ระยะห่าง */
-  --dot-size: 5px; /* รัศมีจุด */
+  --dot-size: 2px; /* รัศมีจุด */
 }
 .dark {
   --dot-color: #334155; /* สีจุด (dark) */

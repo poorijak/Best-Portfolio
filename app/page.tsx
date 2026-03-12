@@ -1,13 +1,12 @@
-import HeroSection from "@/components/HeroSection/HeroSection";
-import LoadingContent from "@/components/loading/LoadingContent";
-import Image from "next/image";
+import HeroSection from "@/feature/components/HeroSection/HeroSection";
+import LoadingContent from "@/feature/components/loading/LoadingContent";
 
 export default async function Home() {
   return (
     <main>
       <LoadingContent />
-      <div className="min-h-screen bg-dot-grid flex bg-background ">
-      <HeroSection/>
+      <div className="bg-dot-grid bg-background flex min-h-screen">
+        <HeroSection />
       </div>
     </main>
   );

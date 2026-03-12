@@ -1,7 +1,7 @@
 "use client"
 
 import { useGSAP } from "@gsap/react";
-import gsap from "../../lib/gsap";
+import gsap from "../../../lib/gsap";
 import React, { useRef } from "react";
 
 const Cursor = () => {
@@ -11,11 +11,11 @@ const Cursor = () => {
     gsap.set(cursorRef.current, { xPercent: -50, yPercent: -50 });
 
     const xSetCursor = gsap.quickTo(cursorRef.current, "x", {
-      duration: 0.5,
+      duration: 0.3,
       ease: "power3",
     });
     const ySetCursor = gsap.quickTo(cursorRef.current, "y", {
-      duration: 0.5,
+      duration: 0.3,
       ease: "power3",
     });
 
@@ -33,7 +33,7 @@ const Cursor = () => {
     <div
       ref={cursorRef}
       id="cursor"
-      className="size-5 mix-blend-difference fixed pointer-events-none top-0 left-0 bg-white rounded-full z-10"
+      className="size-5 hidden md:block  mix-blend-difference fixed pointer-events-none top-0 left-0 bg-white rounded-full z-999"
     ></div>
   );
 };
