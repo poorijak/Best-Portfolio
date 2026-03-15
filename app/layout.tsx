@@ -5,6 +5,11 @@ import { Suspense } from "react";
 import Cursor from "@/feature/components/cursor/Cursor";
 import Navbar from "@/feature/components/Navbar/Navbar";
 import SmoothScroll from "@/feature/components/smoothScroll/smoothScroll";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,11 +22,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body
         className={`${advercase.variable} ${saans.variable} selection:bg-primary/70 antialiased selection:text-black`}
       >
         <SmoothScroll>
+          <Toaster />
           <Cursor />
           {children}
           <Navbar />

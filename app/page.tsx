@@ -8,6 +8,7 @@ export default async function Home() {
       <div className="bg-dot-grid bg-background flex min-h-screen">
         <HeroSection />
       </div>
+      <div className="h-[1000px] bg-white"></div>
     </main>
   );
 }

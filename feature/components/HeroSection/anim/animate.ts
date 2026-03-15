@@ -15,12 +15,12 @@ export const popAnimate = (scope: React.RefObject<HTMLElement | null>) => {
   })
     .from(select(".draggable-pic"), {
       opacity: 0,
-      scale: 3,
+      scale: 6,
       yoyo: true,
       duration: 0.5,
       stagger: {
-      amount : 0.9,
-      from : "random"
+        amount: 0.9,
+        from: "random",
       },
       ease: "back.out(1.7)",
     })
@@ -40,22 +40,53 @@ export const dragItem = (selector: string, container: HTMLElement | null) => {
   Draggable.create(selector, {
     type: "x,y",
     inertia: true,
-    onPress: function () {
-      // ดึงขึ้นมาไว้ข้างบนสุดเมื่อคลิก
-      gsap.set(this.target, { zIndex: 100 });
-      // ปรับให้เพื่อนๆ z-index ลดลง
-      gsap.set(".draggable-pic", {
-        zIndex: (i) =>
-          this.target.classList.contains(`sticker-${i}`) ? 100 : 1,
-      });
+    onDrag: function () {
+      console.log(
+        `Target: ${this.target.title || "sticker"} -> x: ${this.x.toFixed(2)}, y: ${this.y.toFixed(2)}`,
+      );
     },
     onDragStart: function () {
-      console.log("เริ่มลากแล้ว!");
-      gsap.to(this.target, { scale: 1.1, cursor: "grabbing" });
+      const baseScale = Number(this.target.dataset.scale) || 1;
+      gsap.to(this.target, { scale: baseScale + 0.1, cursor: "grabbing" });
     },
     onDragEnd: function () {
-      console.log("หยุดลาก!");
-      gsap.to(this.target, { scale: 1, cursor: "grab" });
+      const baseScale = Number(this.target.dataset.scale) || 1;
+
+      console.log("Final Position -> x:", this.x, "y:", this.y);
+      gsap.to(this.target, { scale: baseScale, cursor: "grab" });
     },
   });
+};
+
+export const clickAnimate = (target: EventTarget, baseScale: number) => {
+  gsap.to(target, {
+    scale: baseScale + 0.3,
+    rotation: "+=15",
+    yoyo: true,
+    repeat: 1,
+    duration: 0.2,
+    ease: "power1.inOut",
+  });
+};
+
+export const heroScroll = (container: HTMLElement | null) => {
+  if (!container) return;
+
+  const selector = gsap.utils.selector(container);
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+      },
+    })
+    .to(selector(".draggable-pic"), {
+      y: () => gsap.utils.random(300, -300),
+      // y: "-=300",
+      rotation: () => gsap.utils.random(-20, 20),
+      ease: "none",
+    });
 };

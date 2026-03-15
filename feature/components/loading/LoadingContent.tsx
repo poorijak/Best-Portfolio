@@ -4,7 +4,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "../../../lib/gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { fadeText, textSlideDown, staggeredSlideUp, fadeOut } from "./anim/animate";
-import Image from "next/image";
 
 // const greetings = ["Hello", "Bonjour", "Ciao", "Olà", "やあ", "Hallå", "Guten tag", "Hallo"]
 const greetings = [

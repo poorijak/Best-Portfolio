@@ -3,22 +3,9 @@
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import React, { useRef } from "react";
-import { dragItem, popAnimate } from "./anim/animate";
+import { dragItem, popAnimate, clickAnimate, heroScroll } from "./anim/animate";
 import gsap from "@/lib/gsap";
-
-const stickerData = [
-  { x: 350, y: 150, r: 12, s: 2.0, title: "thai tea" },
-  { x: 50, y: -250, r: 6, s: 1.1, title: "linkedIn" },
-  { x: 400, y: -100, r: -3, s: 1.5, title: "hat" },
-  { x: 180, y: 220, r: 15, s: 1.4, title: "controller" },
-  { x: 520, y: -200, r: 3, s: 2.5, title: "k3" },
-  { x: 480, y: 120, r: 0, s: 1.0, title: "airpod" },
-  { x: -380, y: 140, r: -12, s: 2.0, title: "gundam" },
-  { x: -580, y: 40, r: -12, s: 2.0, title: "macbook" },
-  { x: -180, y: -220, r: -9, s: 1.7, title: "kfc" },
-  { x: 280, y: -280, r: -3, s: 2.0, title: "phone booth" },
-  { x: -480, y: -150, r: -6, s: 1.3, title: "drumpbell" },
-];
+import { stickerData } from "./data";
 
 const HeroSection = () => {
   const containerRef = useRef(null);
@@ -38,6 +25,7 @@ const HeroSection = () => {
 
       popAnimate(containerRef);
       dragItem(".draggable-pic", containerRef.current);
+      heroScroll(containerRef.current);
     },
     { scope: containerRef },
   );
@@ -71,6 +59,10 @@ const HeroSection = () => {
           <div
             key={index + 1}
             title={pos.title}
+            data-scale={pos.s}
+            onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+              pos.onClick && pos.onClick(e.currentTarget)
+            }
             className={`draggable-pic sticker-${index} pointer-events-auto absolute size-24 hover:scale-110 hover:cursor-grab active:cursor-grabbing`}
           >
             <Image
