@@ -33,7 +33,7 @@ const HeroSection = () => {
   return (
     <div
       ref={containerRef}
-      className="font-advercase relative flex w-full flex-1 flex-col items-center justify-center gap-5 overflow-hidden text-xl transition-transform duration-300 md:text-4xl"
+      className="font-advercase relative flex w-full flex-1 flex-col items-center justify-center gap-5 overflow-hidden text-2xl transition-transform duration-300 md:text-4xl"
     >
       <div className="flex items-center gap-3">
         <h1 className="animate-item">Hi , I’ m </h1>
