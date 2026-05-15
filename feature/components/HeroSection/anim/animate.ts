@@ -85,7 +85,6 @@ export const heroScroll = (container: HTMLElement | null) => {
     })
     .to(selector(".draggable-pic"), {
       y: () => gsap.utils.random(300, -300),
-      // y: "-=300",
       rotation: () => gsap.utils.random(-20, 20),
       ease: "none",
     });

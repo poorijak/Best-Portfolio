@@ -5,6 +5,7 @@ import Star from "@/public/icon/Star.svg";
 import { useGSAP } from "@gsap/react";
 import gsap from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/all";
+import { cn } from "@/lib/utils";
 
 const list = [
   "Software Engineer",
@@ -13,7 +14,12 @@ const list = [
   "Ux & ui Desginer",
 ];
 
-const TextMarqee = () => {
+interface TextMarqeeProsp {
+  className?: string;
+  reverse?: boolean;
+}
+
+const TextMarqee = ({ className, reverse = false }: TextMarqeeProsp) => {
   const containerRef = useRef(null);
   const movieContentRef = useRef(null);
 
@@ -33,8 +39,9 @@ const TextMarqee = () => {
         start: "top bottom",
         end: "bottom top",
         onUpdate: (self) => {
-          const velocity = self.getVelocity();
-          const newScale = 1 + velocity / 300;
+          const velocity = Math.abs(self.getVelocity() / 300);
+          const baseDirection = reverse ? -1 : 1;
+          const newScale = baseDirection + (reverse ? -velocity : velocity);
 
           gsap.to(tween, {
             timeScale: newScale,
@@ -46,10 +53,12 @@ const TextMarqee = () => {
 
         onToggle: (self) => {
           if (!self.isActive) {
-            gsap.to(tween, { timeScale: 1, duration: 1 });
+            gsap.to(tween, { timeScale: reverse ? -1 : 1, duration: 1 });
           }
         },
       });
+
+      if (reverse) tween.timeScale(-1);
     },
     { scope: containerRef },
   );
@@ -57,7 +66,7 @@ const TextMarqee = () => {
   return (
     <div
       ref={containerRef}
-      className="bg-primary h-12 w-full overflow-hidden py-2"
+      className={cn("bg-primary h-12 w-full overflow-hidden py-2", className)}
     >
       <div ref={movieContentRef} className="flex w-max items-center">
         {[...list, ...list, ...list].map((item, i) => (

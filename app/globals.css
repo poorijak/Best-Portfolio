@@ -10,10 +10,9 @@ body {
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(97.7% 0.001 285.4);
+  --foreground: oklch(7.245% 0.00663 18.742);
 
-  /* สีเขียว #B8FB00 ที่คุณต้องการ */
   --primary: oklch(0.9091 0.2335 126.7);
   --primary-foreground: oklch(0.985 0 0); /* ใช้สีเข้มบนพื้นเขียวสว่าง */
 
@@ -123,6 +122,21 @@ body {
     );
     background-size: var(--dot-gap) var(--dot-gap);
     background-position: 0 0;
+  }
+
+  .text-year {
+    /* Mobile: ขนาดพอเหมาะไม่ล้นจอเกินไป */
+    font-size: 30vw;
+    line-height: 0.8;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .text-year {
+      /* Desktop: ขนาดใหญ่ตามที่คุณต้องการ */
+      font-size: calc(300 / 1440 * 100vw);
+    }
   }
 }
 
