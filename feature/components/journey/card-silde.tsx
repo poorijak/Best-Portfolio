@@ -1,15 +1,18 @@
+import { cn } from "@/lib/utils";
 import React from "react";
+import { JourneyDataType } from "./data/data";
 
 interface CardSildeProps {
-  name_company: string;
-  description: string;
+  data: JourneyDataType
 }
 
-const CardSilde = ({ name_company, description }: CardSildeProps) => {
+
+const CardSilde = ({ data }: CardSildeProps) => {
+  const { name_company, description, isCurrent } = data
   const shotName = name_company.slice(0, 1);
 
   return (
-    <div className="card-slide bg-primary mx-10 h-[125.25px] w-100 shrink-0 rounded-4xl">
+    <div className={cn("card-slide mx-10 aspect-3/4 h-[60vh] shrink-0 rounded-[20px] ", isCurrent ? "bg-primary" : "bg-white")}>
       <h1>{shotName}</h1>
     </div>
   );

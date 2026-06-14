@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowUpRightIcon, ListIcon } from "@phosphor-icons/react";
 import Marquee from "./marquee";
 import { useGSAP } from "@gsap/react";
@@ -12,6 +12,8 @@ const Navbar = () => {
   const containerRef = useRef(null);
   const menuRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
 
   useGSAP(
     () => {
@@ -21,7 +23,26 @@ const Navbar = () => {
     { scope: containerRef, dependencies: [isActive] },
   );
 
-  console.log(isActive);
+  useEffect(() => {
+    const handelScroll = () => {
+      const currentScrollState = window.scrollY
+
+      if (currentScrollState > scrollPosition && currentScrollState > 50) {
+        setIsVisible(false)
+      }
+      else {
+        setIsVisible(true)
+      }
+
+      setScrollPosition(currentScrollState)
+    }
+
+    window.addEventListener("scroll", handelScroll)
+    return () => {
+      window.removeEventListener("scroll", handelScroll)
+    }
+  }, [scrollPosition])
+
 
   const navLinks = [
     { href: "/menu", label: "Menu" },
@@ -32,8 +53,7 @@ const Navbar = () => {
   return (
     <div
       ref={containerRef}
-      className="bg-primary fixed inset-x-0 bottom-4 z-50 mx-auto flex h-auto w-[90%] flex-col-reverse overflow-hidden rounded-2xl border border-[#AEED00] py-2 pr-4 pl-2 md:bottom-6 md:w-175 md:rounded-[20px] md:pr-8"
-      // style={{ height: 80 }}
+      className={cn("bg-primary fixed inset-x-0 bottom-4 z-50 mx-auto flex h-auto w-[90%] flex-col-reverse overflow-hidden rounded-2xl border border-[#AEED00] py-2 pr-4 pl-2 md:bottom-6 md:w-175 md:rounded-[20px] md:pr-8 transition-transform duration-300", isVisible ? "translate-y-0" : "translate-y-[calc(100%+2rem)]")}
     >
       <div className="flex items-center justify-between">
         <div className="flex w-72 items-center gap-5 md:w-150">

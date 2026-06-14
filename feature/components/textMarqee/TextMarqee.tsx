@@ -66,7 +66,7 @@ const TextMarqee = ({ className, reverse = false }: TextMarqeeProsp) => {
   return (
     <div
       ref={containerRef}
-      className={cn("bg-primary h-12 w-full overflow-hidden py-2", className)}
+      className={cn("bg-primary relative z-50 h-12 w-full overflow-hidden py-2", className)}
     >
       <div ref={movieContentRef} className="flex w-max items-center">
         {[...list, ...list, ...list].map((item, i) => (

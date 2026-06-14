@@ -78,7 +78,6 @@ export const AnimateText = ({
             trigger: containerRef.current,
             start: "top 75%",
             once: true,
-            markers: true,
           },
         });
       } else {

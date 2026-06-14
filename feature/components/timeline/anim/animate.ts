@@ -13,7 +13,6 @@ export const timelineScroll = (container: HTMLElement | null) => {
     });
   });
 
-  // Work Item parallax movement (Individual items to preserve stacking context)
   const workItems = gsap.utils.toArray<HTMLElement>(
     '[data-timeline="work-item"]',
   );
